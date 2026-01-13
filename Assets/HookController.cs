@@ -2,41 +2,51 @@ using UnityEngine;
 
 public class HookController : MonoBehaviour
 {
-    public RectTransform panelRect; // a UI panel
-    public float speed = 300f;      // alap sebesség
+    public RectTransform panelRect;
+    public float speed = 200f;
 
-    private RectTransform rectTransform;
+    RectTransform hookRect;
 
     void Start()
     {
-        rectTransform = GetComponent<RectTransform>();
-
-        if (panelRect == null)
-            Debug.LogError("A panelRect nincs hozzárendelve a HookController-ben!");
+        hookRect = GetComponent<RectTransform>();
     }
 
     void Update()
     {
-        if (panelRect == null) return;
-
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputY = Input.GetAxisRaw("Vertical");
 
-        // a sebesség most már arányos a panel teljes méretével
-        float speedX = speed * Time.deltaTime;
-        float speedY = speed * Time.deltaTime;
+        Vector2 input = new Vector2(inputX, inputY);
 
-        Vector2 newPos = rectTransform.anchoredPosition;
-        newPos.x += inputX * speedX;
-        newPos.y += inputY * speedY;
+        //  EZ A LÉNYEG
+        if (input.magnitude > 1f)
+            input = input.normalized;
 
-        // panel határain belülre korlátozás
-        float halfWidth = panelRect.rect.width / 2f;
-        float halfHeight = panelRect.rect.height / 2f;
+        Vector2 pos = hookRect.anchoredPosition;
+        pos += input * speed * Time.deltaTime;
 
-        newPos.x = Mathf.Clamp(newPos.x, -halfWidth, halfWidth);
-        newPos.y = Mathf.Clamp(newPos.y, -halfHeight, halfHeight);
+        // Panel fél méretek
+        float panelHalfWidth = panelRect.rect.width / 2f;
+        float panelHalfHeight = panelRect.rect.height / 2f;
 
-        rectTransform.anchoredPosition = newPos;
+        // Hook fél méretek
+        float hookHalfWidth = hookRect.rect.width / 2f;
+        float hookHalfHeight = hookRect.rect.height / 2f;
+
+        // Clamp
+        pos.x = Mathf.Clamp(
+            pos.x,
+            -panelHalfWidth + hookHalfWidth,
+             panelHalfWidth - hookHalfWidth
+        );
+
+        pos.y = Mathf.Clamp(
+            pos.y,
+            -panelHalfHeight + hookHalfHeight,
+             panelHalfHeight - hookHalfHeight
+        );
+
+        hookRect.anchoredPosition = pos;
     }
 }
