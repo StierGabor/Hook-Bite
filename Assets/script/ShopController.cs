@@ -27,11 +27,17 @@ public class ShopController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("ShopZone"))
-        {
-            isInShopZone = false;
+        if (!other.CompareTag("ShopZone"))
+            return;
+
+        isInShopZone = false;
+        isOpen = false;
+
+        if (shopPanel != null)
             shopPanel.SetActive(false);
-            isOpen = false;
-        }
+
+        if (playerMovement != null)
+            playerMovement.canMove = true;
     }
+
 }
