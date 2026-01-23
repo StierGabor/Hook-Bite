@@ -31,7 +31,6 @@ public class FishingUiController : MonoBehaviour
             playerMovement.canMove = !isOpen;
         }
     }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GetComponent<FishingZone>() != null)
@@ -48,4 +47,5 @@ public class FishingUiController : MonoBehaviour
             playerMovement.canMove = true;
         }
     }
+    
 }
