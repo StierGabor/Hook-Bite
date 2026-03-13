@@ -5077,8 +5077,8 @@ GameObject:
   - component: {fileID: 300108898}
   - component: {fileID: 300108900}
   - component: {fileID: 300108899}
-  - component: {fileID: 300108902}
   - component: {fileID: 300108901}
+  - component: {fileID: 300108902}
   m_Layer: 5
   m_Name: pointer
   m_TagString: Untagged
@@ -5102,8 +5102,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0186, y: -0.40219998}
-  m_SizeDelta: {x: 0.0372, y: 0.2234}
+  m_AnchoredPosition: {x: -0.012, y: -0.039}
+  m_SizeDelta: {x: 0.2326, y: 0.2131}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &300108898
 SpriteRenderer:
@@ -5170,14 +5170,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 75843e3697b11a54386f04f0cab29f22, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5208,14 +5208,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bar: {fileID: 571314923}
-  speed: 5
---- !u!135 &300108902
-SphereCollider:
+  pointer: {fileID: 300108897}
+  goodZoneCollider: {fileID: 1691351916}
+  FishingPanel: {fileID: 1982968287}
+  playerMovement: {fileID: 1248155611}
+  speed: 2
+  edgeOffset: -0.1
+--- !u!58 &300108902
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 300108896}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -5224,12 +5231,24 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.052789137
-  m_Center: {x: 0, y: 0, z: 0}
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.000000007450581}
+  serializedVersion: 2
+  m_Radius: 0.10991546
 --- !u!1 &339470774
 GameObject:
   m_ObjectHideFlags: 0
@@ -6518,7 +6537,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000000061467, y: -0.4051}
+  m_AnchoredPosition: {x: -0.000000061467, y: -0.033}
   m_SizeDelta: {x: 1.6351, y: 0.2292}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &571314924
@@ -6586,7 +6605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 1}
+  m_Color: {r: 0.4669811, g: 0.76953775, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9011,9 +9030,10 @@ GameObject:
   - component: {fileID: 1691351911}
   - component: {fileID: 1691351913}
   - component: {fileID: 1691351912}
-  - component: {fileID: 1691351914}
+  - component: {fileID: 1691351915}
+  - component: {fileID: 1691351916}
   m_Layer: 5
-  m_Name: goodZone
+  m_Name: GoodZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9026,17 +9046,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1691351909}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.010349071, y: -0.045673173, z: -0.0007640184, w: 0.99890256}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1982968288}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.189, y: -5.236, z: -0.033}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.014, y: -0.405}
-  m_SizeDelta: {x: 0.0989, y: 0.2234}
+  m_AnchoredPosition: {x: -0.01349666, y: -0.039000005}
+  m_SizeDelta: {x: 0.2293, y: 0.2262}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &1691351911
 SpriteRenderer:
@@ -9103,14 +9123,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.083981514, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -224210095, guid: 56ef9639bf3c7c94b887ced6540b7813, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9128,8 +9148,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1691351909}
   m_CullTransparentMesh: 1
---- !u!61 &1691351914
-BoxCollider2D:
+--- !u!114 &1691351915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691351909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d16b401b76bf33443bffe5049389c022, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bar: {fileID: 571314923}
+  FishingPanel: {fileID: 1982968287}
+  fishImage: {fileID: 1691351912}
+  fishImages:
+  - {fileID: 21300000, guid: 5e93117a6168fa34ab5bf452a7f868c3, type: 3}
+  - {fileID: 21300000, guid: d50b15776e5f5204eb2db8577a0ee296, type: 3}
+  - {fileID: 21300000, guid: f53950643cd6a9448b8174ca59380f6e, type: 3}
+  - {fileID: 21300000, guid: ff2f1963bc2515f4b97c5242ffaca803, type: 3}
+  fishRarityWeights: 37000000210000000a00000002000000
+  enableFishMovement: 1
+  minSpeeds:
+  - 1
+  - 1.5
+  - 0.5
+  - 3
+  maxSpeeds:
+  - 2
+  - 2.5
+  - 1.2
+  - 4
+  edgeOffset: -0.1
+--- !u!58 &1691351916
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -9160,19 +9213,9 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.017431676, y: 0.000000044703484}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: -0.000000014901161}
   serializedVersion: 2
-  m_Size: {x: 1.6345114, y: 0.2330086}
-  m_EdgeRadius: 0
+  m_Radius: 0.11266208
 --- !u!1 &1780437410
 GameObject:
   m_ObjectHideFlags: 0
@@ -9682,7 +9725,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1982968288
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9702,8 +9745,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.017, y: 0.0000000018626}
-  m_SizeDelta: {x: 2.2059, y: 2}
+  m_AnchoredPosition: {x: 0.4316, y: 0.276}
+  m_SizeDelta: {x: 3.3209, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1982968289
 MonoBehaviour:

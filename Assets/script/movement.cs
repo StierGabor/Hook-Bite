@@ -16,7 +16,14 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!canMove) return;   // HA UI FENT VAN → NINCS MOZGÁS
+        if (!canMove) 
+        {
+            if (Animator != null)
+            {
+                Animator.SetBool("isRunning", false);
+            }
+            return;   // HA UI FENT VAN → NINCS MOZGÁS
+        }
 
         float move = Input.GetAxisRaw("Horizontal");
         rb.MovePosition(rb.position + Vector2.right * move * speed * Time.fixedDeltaTime);
