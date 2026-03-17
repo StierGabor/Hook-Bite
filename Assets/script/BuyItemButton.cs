@@ -2,22 +2,38 @@ using UnityEngine;
 
 public class BuyItemButton : MonoBehaviour
 {
-    public int itemPrice = 10;
-    public PlayerGold playerGold;
-    public int rodTier = 0; // 0 = nem bot, 1..N = bot tier
+    public GameManager gameManager; //a játékos pénzét innen vesszük
     public PlayerFishingProgress fishingProgress;
 
+    public int firstItemPrice = 10;
+    public int secondItemPrice = 50;
+    public int thirdItemPrice = 500;
+    bool success = false;
 
     public void Buy()
     {
-        if (playerGold == null) return;
+        if (gameManager == null) return;
 
-        bool success = playerGold.SpendGold(itemPrice);
+        if (gameManager.bot == 0)
+        {
+                success = gameManager.SpendPenz(firstItemPrice);
+            gameManager.bot = 1;
+        }
+        else if (gameManager.bot == 1)
+        {
+                success = gameManager.SpendPenz(secondItemPrice);
+            gameManager.bot = 2;
+        }
+        else if (gameManager.bot == 2)
+        {
+                success = gameManager.SpendPenz(thirdItemPrice);
+            gameManager.bot = 3;
+        }
 
         if (success)
         {
-            if (rodTier > 0 && fishingProgress != null)
-                fishingProgress.UnlockRodTier(rodTier);
+            if (gameManager.bot > 0 && fishingProgress != null)
+                fishingProgress.UnlockRodTier(gameManager.bot);
 
             gameObject.SetActive(false);
         }

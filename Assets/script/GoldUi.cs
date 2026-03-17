@@ -3,13 +3,13 @@ using TMPro;
 
 public class GoldUI : MonoBehaviour
 {
-    public PlayerGold playerGold;
     public TextMeshProUGUI goldText;
+    public GameManager gameManager;
 
     void Update()
     {
-        if (playerGold == null || goldText == null) return;
+        if (gameManager == null || goldText == null) return;
 
-        goldText.text = "Gold: " + playerGold.gold;
+        goldText.text = "Gold: " + gameManager.penz;
     }
 }

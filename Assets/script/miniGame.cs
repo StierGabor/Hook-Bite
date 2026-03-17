@@ -6,8 +6,8 @@ public class miniGame : MonoBehaviour
     public Transform pointer;
     public Collider2D goodZoneCollider;
     public GameObject FishingPanel;
+    public GameManager gameManager; // Referencia a GameManagerre
     public PlayerMovement playerMovement; // Referencia a játékos mozgására
-
     public float speed = 5f;
     public float edgeOffset = -0.1f; // Ezzel a Unity Inspectorban manuálisan finomhangolhatod, mennyire menjen ki a széléig
     private int direction = 1;
@@ -75,6 +75,7 @@ public class miniGame : MonoBehaviour
         if (caught)
         {
             Debug.Log("Fish caught!");
+            gameManager.halak += 1;
         }
         else
         {
