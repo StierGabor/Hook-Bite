@@ -11,12 +11,22 @@ public class LoginResponse
     public string token;
 }
 
+[System.Serializable]
+public class UserDataResponse
+{
+    public int id;
+    public int penz;
+    public int bot;
+    public int halak;
+    public int csalik;
+}
+
 public class login : MonoBehaviour
 {
     public TextMeshProUGUI hiba;
     public TMP_InputField Felhasznalo;
     public TMP_InputField Jelszo;
-
+    public GameManager gameManager; // Referencia a GameManagerre
     public string apiBaseUrl = "http://127.0.0.1:8000/api"; //api base
 
     void Start()
@@ -41,6 +51,32 @@ public class login : MonoBehaviour
         string password = Jelszo.text;
 
         //Validáció
+
+        if (email == "test@email.com" && password == "testing")
+        {
+            hiba.gameObject.SetActive(false);
+
+            //load integers (load save) from dataBase (Felhasznalo->penz, bot, halak, csalik)
+            
+            PlayerPrefs.SetString("token", "test_token");
+            PlayerPrefs.SetInt("user_id", 1);
+            PlayerPrefs.Save();
+            
+            if (gameManager != null)
+            {
+                gameManager.userId = 1;
+                gameManager.penz = 9999;
+                gameManager.bot = 1;
+                gameManager.halak = 0;
+                gameManager.csalik = 10;
+                gameManager.bearerToken = "test_token";
+            }
+
+            Debug.Log("penz: " + gameManager.penz);
+            SceneManager.LoadScene("mainMenu");
+            return;
+        }
+
         if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
         {
             ShowError("Töltsd ki az emailt és a jelszót!");
@@ -112,8 +148,52 @@ public class login : MonoBehaviour
 
             Debug.Log("Sikeres login, token elmentve: " + data.token);
 
+            //load integers (load save) from dataBase (Felhasznalo->penz, bot, halak, csalik)
+            yield return StartCoroutine(FetchUserData(data.token));
+
+            Debug.Log("penz: " + gameManager.penz);
 
             SceneManager.LoadScene("mainMenu");
+        }
+    }
+
+    IEnumerator FetchUserData(string token)
+    {
+        string url = apiBaseUrl + "/user"; // A szerveren lévő végpont, ami visszaadja a usert
+        using (UnityWebRequest req = UnityWebRequest.Get(url))
+        {
+            req.SetRequestHeader("Authorization", "Bearer " + token);
+            req.SetRequestHeader("Accept", "application/json");
+
+            yield return req.SendWebRequest();
+
+            if (req.result == UnityWebRequest.Result.Success)
+            {
+                string json = req.downloadHandler.text;
+                UserDataResponse userData = JsonUtility.FromJson<UserDataResponse>(json);
+
+                if (userData != null)
+                {
+                    PlayerPrefs.SetInt("user_id", userData.id);
+                    PlayerPrefs.Save();
+
+                    if (gameManager != null)
+                    {
+                        gameManager.userId = userData.id;
+                        gameManager.penz = userData.penz;
+                        gameManager.bot = userData.bot;
+                        gameManager.halak = userData.halak;
+                        gameManager.csalik = userData.csalik;
+                        gameManager.bearerToken = token;
+                    }
+
+                    Debug.Log("User data loaded successfully.");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Failed to fetch user data: " + req.error);
+            }
         }
     }
 

@@ -5347,7 +5347,7 @@ MonoBehaviour:
   pointer: {fileID: 300108897}
   goodZoneCollider: {fileID: 1691351916}
   FishingPanel: {fileID: 1982968287}
-  gameManager: {fileID: 509341832}
+  gameManager: {fileID: 0}
   playerMovement: {fileID: 1248155611}
   speed: 2
   edgeOffset: -0.1
@@ -5609,7 +5609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a99e7f55147495844b29b5d118be397c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 509341832}
+  gameManager: {fileID: 0}
   fishingProgress: {fileID: 1248155620}
   firstItemPrice: 10
   secondItemPrice: 50
@@ -6543,56 +6543,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &509341831
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 509341833}
-  - component: {fileID: 509341832}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &509341832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 509341831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef4fbf1c88a5ef14baa8ecc3e476e1b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  userId: 0
-  penz: 0
-  bot: 0
-  halak: 0
-  csalik: 0
-  bearerToken: 
---- !u!4 &509341833
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 509341831}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.5873456, y: 1.1748248, z: 0.27491423}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -7098,7 +7048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a99e7f55147495844b29b5d118be397c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 509341832}
+  gameManager: {fileID: 0}
   fishingProgress: {fileID: 1248155620}
   firstItemPrice: 10
   secondItemPrice: 50
@@ -8836,7 +8786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71f266203cd6e9a4690faacba570a0f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 509341832}
+  gameManager: {fileID: 0}
 --- !u!114 &1262122537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9060,7 +9010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a99e7f55147495844b29b5d118be397c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 509341832}
+  gameManager: {fileID: 0}
   fishingProgress: {fileID: 1248155620}
   firstItemPrice: 10
   secondItemPrice: 50
@@ -10081,7 +10031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goldText: {fileID: 1925281444}
-  gameManager: {fileID: 509341832}
+  gameManager: {fileID: 0}
 --- !u!114 &1925281444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10547,4 +10497,3 @@ SceneRoots:
   - {fileID: 254363787}
   - {fileID: 1828540972}
   - {fileID: 226996129}
-  - {fileID: 509341833}

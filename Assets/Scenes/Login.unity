@@ -308,6 +308,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: -8, y: -5, z: -8, w: -5}
   m_Softness: {x: 0, y: 0}
+--- !u!1 &481646729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 481646730}
+  - component: {fileID: 481646731}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &481646730
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481646729}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &481646731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481646729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4fbf1c88a5ef14baa8ecc3e476e1b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  userId: 0
+  penz: 0
+  bot: 0
+  halak: 0
+  csalik: 0
+  bearerToken: 
 --- !u!1 &544933518
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,6 +976,7 @@ MonoBehaviour:
   hiba: {fileID: 1614693756}
   Felhasznalo: {fileID: 544933520}
   Jelszo: {fileID: 932299070}
+  gameManager: {fileID: 0}
   apiBaseUrl: http://127.0.0.1:8000/api
 --- !u!1 &1002253014
 GameObject:
@@ -1833,9 +1884,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2ab410b94634194e961efa2d14b944b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hiba: {fileID: 0}
-  Felhasznalo: {fileID: 0}
-  Jelszo: {fileID: 0}
+  hiba: {fileID: 1614693756}
+  Felhasznalo: {fileID: 544933520}
+  Jelszo: {fileID: 932299070}
+  gameManager: {fileID: 0}
   apiBaseUrl: http://127.0.0.1:8000/api/login
 --- !u!1 &1728405025
 GameObject:
@@ -2266,3 +2318,4 @@ SceneRoots:
   - {fileID: 947886901}
   - {fileID: 575143384}
   - {fileID: 1009707295}
+  - {fileID: 481646730}
