@@ -1,46 +1,70 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BuyItemButton : MonoBehaviour
 {
-    public GameManager gameManager; //a j�t�kos p�nz�t innen vessz�k
     public PlayerFishingProgress fishingProgress;
+
+    public int targetBotTier = 1; // Állítsd be az Inspectorban (1 az első bothoz, 2 a másodikhoz, 3 a harmadikhoz)
 
     public int firstItemPrice = 10;
     public int secondItemPrice = 50;
     public int thirdItemPrice = 500;
-    bool success = false;
+
+    void Update()
+    {
+        if (GameManager.Instance == null) return;
+
+        // Csak azt a gombot mutatjuk, amelyik a következő megvásárolható bot
+        if (GameManager.Instance.bot >= targetBotTier)
+        {
+            // Már megvásárolta ezt a botot
+            gameObject.SetActive(false);
+        }
+        else if (GameManager.Instance.bot == targetBotTier - 1)
+        {
+            // Ez a következő bot, amit megvehet
+        }
+        else
+        {
+            // Még nem vette meg az előző botokat
+            gameObject.SetActive(false);
+        }
+    }
 
     public void Buy()
     {
-        if (gameManager == null) return;
+        if (GameManager.Instance == null) return;
 
-        if (gameManager.bot == 0)
+        bool success = false;
+
+        // Cél bot szint szerint ár meghatározás és vásárlás
+        if (targetBotTier == 1 && GameManager.Instance.bot == 0)
         {
-                success = gameManager.SpendPenz(firstItemPrice);
-            gameManager.bot = 1;
+            success = GameManager.Instance.SpendPenz(firstItemPrice);
+            if (success) GameManager.Instance.bot = 1;
         }
-        else if (gameManager.bot == 1)
+        else if (targetBotTier == 2 && GameManager.Instance.bot == 1)
         {
-                success = gameManager.SpendPenz(secondItemPrice);
-            gameManager.bot = 2;
+            success = GameManager.Instance.SpendPenz(secondItemPrice);
+            if (success) GameManager.Instance.bot = 2;
         }
-        else if (gameManager.bot == 2)
+        else if (targetBotTier == 3 && GameManager.Instance.bot == 2)
         {
-                success = gameManager.SpendPenz(thirdItemPrice);
-            gameManager.bot = 3;
+            success = GameManager.Instance.SpendPenz(thirdItemPrice);
+            if (success) GameManager.Instance.bot = 3;
         }
 
         if (success)
         {
-            if (gameManager.bot > 0 && fishingProgress != null)
-                fishingProgress.UnlockRodTier(gameManager.bot);
+            if (GameManager.Instance.bot > 0 && fishingProgress != null)
+                fishingProgress.UnlockRodTier(GameManager.Instance.bot);
 
+            // Ha a gomb egy adott bothoz tartozik, elrejthető
             gameObject.SetActive(false);
         }
-
         else
         {
-            Debug.Log("Nincs el�g gold");
+            Debug.Log("Nincs elég gold");
         }
     }
 }

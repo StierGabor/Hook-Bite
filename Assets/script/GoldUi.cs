@@ -4,12 +4,11 @@ using TMPro;
 public class GoldUI : MonoBehaviour
 {
     public TextMeshProUGUI goldText;
-    public GameManager gameManager;
 
     void Update()
     {
-        if (gameManager == null || goldText == null) return;
+        if (GameManager.Instance == null || goldText == null) return;
 
-        goldText.text = "Gold: " + gameManager.penz;
+        goldText.text = "Gold: " + GameManager.Instance.penz;
     }
 }

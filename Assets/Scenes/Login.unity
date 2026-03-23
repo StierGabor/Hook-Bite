@@ -976,7 +976,7 @@ MonoBehaviour:
   hiba: {fileID: 1614693756}
   Felhasznalo: {fileID: 544933520}
   Jelszo: {fileID: 932299070}
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 481646731}
   apiBaseUrl: http://127.0.0.1:8000/api
 --- !u!1 &1002253014
 GameObject:

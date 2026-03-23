@@ -5347,7 +5347,6 @@ MonoBehaviour:
   pointer: {fileID: 300108897}
   goodZoneCollider: {fileID: 1691351916}
   FishingPanel: {fileID: 1982968287}
-  gameManager: {fileID: 0}
   playerMovement: {fileID: 1248155611}
   speed: 2
   edgeOffset: -0.1
@@ -5609,8 +5608,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a99e7f55147495844b29b5d118be397c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
   fishingProgress: {fileID: 1248155620}
+  targetBotTier: 3
   firstItemPrice: 10
   secondItemPrice: 50
   thirdItemPrice: 500
@@ -7048,8 +7047,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a99e7f55147495844b29b5d118be397c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
   fishingProgress: {fileID: 1248155620}
+  targetBotTier: 1
   firstItemPrice: 10
   secondItemPrice: 50
   thirdItemPrice: 500
@@ -8786,7 +8785,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71f266203cd6e9a4690faacba570a0f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
 --- !u!114 &1262122537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9010,8 +9008,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a99e7f55147495844b29b5d118be397c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
   fishingProgress: {fileID: 1248155620}
+  targetBotTier: 2
   firstItemPrice: 10
   secondItemPrice: 50
   thirdItemPrice: 500
@@ -10031,7 +10029,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goldText: {fileID: 1925281444}
-  gameManager: {fileID: 0}
 --- !u!114 &1925281444
 MonoBehaviour:
   m_ObjectHideFlags: 0

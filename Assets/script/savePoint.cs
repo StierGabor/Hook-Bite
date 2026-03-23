@@ -33,7 +33,14 @@ public class SavePoint : MonoBehaviour
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("Mentés folyamatban...");
-            GameManager.Instance.SaveToDatabase();
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.SaveToDatabase();
+            }
+            else
+            {
+                Debug.LogWarning("Nem található GameManager a jelenetben a mentéshez!");
+            }
         }
     }
         

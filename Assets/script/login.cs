@@ -6,12 +6,6 @@ using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
 [System.Serializable]
-public class LoginResponse
-{
-    public string token;
-}
-
-[System.Serializable]
 public class UserDataResponse
 {
     public int id;
@@ -19,6 +13,14 @@ public class UserDataResponse
     public int bot;
     public int halak;
     public int csalik;
+}
+
+[System.Serializable]
+public class LoginResponse
+{
+    public string message;
+    public UserDataResponse user;
+    public string token;
 }
 
 public class login : MonoBehaviour
@@ -57,14 +59,14 @@ public class login : MonoBehaviour
             hiba.gameObject.SetActive(false);
 
             //load integers (load save) from dataBase (Felhasznalo->penz, bot, halak, csalik)
-            
+
             PlayerPrefs.SetString("token", "test_token");
             PlayerPrefs.SetInt("user_id", 1);
             PlayerPrefs.Save();
-            
+
             if (gameManager != null)
             {
-                gameManager.userId = 1;
+                gameManager.userId = 1; //test user ID
                 gameManager.penz = 9999;
                 gameManager.bot = 1;
                 gameManager.halak = 0;
@@ -134,6 +136,7 @@ public class login : MonoBehaviour
             }
 
             string responseText = req.downloadHandler.text;
+            Debug.Log("LOGIN RESPONSE BODY: " + responseText);
             LoginResponse data = JsonUtility.FromJson<LoginResponse>(responseText);
 
             if (data == null || string.IsNullOrEmpty(data.token))
@@ -144,14 +147,39 @@ public class login : MonoBehaviour
             }
 
             PlayerPrefs.SetString("token", data.token);
+            if (data.user != null)
+            {
+                PlayerPrefs.SetInt("user_id", data.user.id);
+            }
             PlayerPrefs.Save();
 
             Debug.Log("Sikeres login, token elmentve: " + data.token);
 
-            //load integers (load save) from dataBase (Felhasznalo->penz, bot, halak, csalik)
-            yield return StartCoroutine(FetchUserData(data.token));
+            // load integers directly from login payload
+            if (data.user != null)
+            {
+                if (GameManager.Instance != null)
+                {
+                    GameManager.Instance.userId = data.user.id;
+                    GameManager.Instance.penz = data.user.penz;
+                    GameManager.Instance.bot = data.user.bot;
+                    GameManager.Instance.halak = data.user.halak;
+                    GameManager.Instance.csalik = data.user.csalik;
+                    GameManager.Instance.bearerToken = data.token;
+                }
+                else if (gameManager != null)
+                {
+                    gameManager.userId = data.user.id;
+                    gameManager.penz = data.user.penz;
+                    gameManager.bot = data.user.bot;
+                    gameManager.halak = data.user.halak;
+                    gameManager.csalik = data.user.csalik;
+                    gameManager.bearerToken = data.token;
+                }
+                Debug.Log("User data loaded successfully directly from login.");
+            }
 
-            Debug.Log("penz: " + gameManager.penz);
+            Debug.Log("penz: " + (GameManager.Instance != null ? GameManager.Instance.penz : gameManager.penz));
 
             SceneManager.LoadScene("mainMenu");
         }
@@ -160,6 +188,9 @@ public class login : MonoBehaviour
     IEnumerator FetchUserData(string token)
     {
         string url = apiBaseUrl + "/user"; // A szerveren lévő végpont, ami visszaadja a usert
+        
+        Debug.Log("FETCH USER URL: " + url);
+        
         using (UnityWebRequest req = UnityWebRequest.Get(url))
         {
             req.SetRequestHeader("Authorization", "Bearer " + token);
@@ -193,6 +224,11 @@ public class login : MonoBehaviour
             else
             {
                 Debug.LogWarning("Failed to fetch user data: " + req.error);
+                Debug.LogWarning("Response Code: " + req.responseCode);
+                if (req.downloadHandler != null)
+                {
+                    Debug.LogWarning("Response Body: " + req.downloadHandler.text);
+                }
             }
         }
     }
