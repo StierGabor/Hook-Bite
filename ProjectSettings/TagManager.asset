@@ -6,6 +6,7 @@ TagManager:
   tags:
   - 'FishingZone '
   - ShopZone
+  - WormZone
   layers:
   - Default
   - TransparentFX

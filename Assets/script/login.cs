@@ -68,8 +68,8 @@ public class login : MonoBehaviour
             {
                 gameManager.userId = 1; //test user ID
                 gameManager.penz = 9999;
-                gameManager.bot = 1;
-                gameManager.halak = 0;
+                gameManager.bot = 0;
+                gameManager.halak = 5;
                 gameManager.csalik = 10;
                 gameManager.bearerToken = "test_token";
             }
