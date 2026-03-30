@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 
 public class miniGame : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class miniGame : MonoBehaviour
     public float speed = 5f;
     public float edgeOffset = -0.1f; // Ezzel a Unity Inspectorban manuálisan finomhangolhatod, mennyire menjen ki a széléig
     private int direction = 1;
+    
+
 
     void Update()
     {
@@ -78,7 +81,9 @@ public class miniGame : MonoBehaviour
         }
         else
         {
+        #if TESZT
             Debug.Log("Missed!");
+        #endif
         }
 
         if (FishingPanel != null)
