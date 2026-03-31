@@ -9,10 +9,13 @@ using UnityEngine.SceneManagement;
 public class UserDataResponse
 {
     public int id;
-    public int penz;
-    public int bot;
-    public int halak;
-    public int csalik;
+    public int gold;
+    public int rod;
+    public int bream;
+    public int catfish;
+    public int ray;
+    public int octopus;
+    public int lure;
 }
 
 [System.Serializable]
@@ -25,15 +28,15 @@ public class LoginResponse
 
 public class login : MonoBehaviour
 {
-    public TextMeshProUGUI hiba;
-    public TMP_InputField Felhasznalo;
-    public TMP_InputField Jelszo;
+    public TextMeshProUGUI error;
+    public TMP_InputField User;
+    public TMP_InputField Password;
     public GameManager gameManager; // Referencia a GameManagerre
     public string apiBaseUrl = "http://127.0.0.1:8000/api"; //api base
 
     void Start()
     {
-        if (hiba != null) hiba.gameObject.SetActive(false);
+        if (error != null) error.gameObject.SetActive(false);
     }
 
     bool IsValidEmail(string email)
@@ -43,22 +46,22 @@ public class login : MonoBehaviour
 
     void ShowError(string msg)
     {
-        hiba.text = msg;
-        hiba.gameObject.SetActive(true);
+        error.text = msg;
+        error.gameObject.SetActive(true);
     }
 
     public void LoginButton()
     {
-        string email = Felhasznalo.text.Trim();
-        string password = Jelszo.text;
+        string email = User.text.Trim();
+        string password = Password.text;
 
         //Validáció
 
         if (email == "test@email.com" && password == "testing")
         {
-            hiba.gameObject.SetActive(false);
+            error.gameObject.SetActive(false);
 
-            //load integers (load save) from dataBase (Felhasznalo->penz, bot, halak, csalik)
+            //load integers (load save) from dataBase (User->gold, rod, bream, lure)
 
             PlayerPrefs.SetString("token", "test_token");
             PlayerPrefs.SetInt("user_id", 1);
@@ -67,14 +70,17 @@ public class login : MonoBehaviour
             if (gameManager != null)
             {
                 gameManager.userId = 1; //test user ID
-                gameManager.penz = 9999;
-                gameManager.bot = 0;
-                gameManager.halak = 5;
-                gameManager.csalik = 10;
+                gameManager.gold = 9999;
+                gameManager.rod = 0;
+                gameManager.bream = 0;
+                gameManager.catfish = 0;
+                gameManager.ray = 0;
+                gameManager.octopus = 0;
+                gameManager.lure = 10;
                 gameManager.bearerToken = "test_token";
             }
 
-            Debug.Log("penz: " + gameManager.penz);
+            Debug.Log("gold: " + gameManager.gold);
             SceneManager.LoadScene("mainMenu");
             return;
         }
@@ -96,7 +102,7 @@ public class login : MonoBehaviour
             return;
         }
 
-        hiba.gameObject.SetActive(false);
+        error.gameObject.SetActive(false);
         StartCoroutine(LoginCoroutine(email, password));
     }
 
@@ -118,15 +124,15 @@ public class login : MonoBehaviour
 
             yield return req.SendWebRequest();
 
-            // Hálózati hiba
+            // Hálózati error
             if (req.result != UnityWebRequest.Result.Success)
             {
-                ShowError("Hálózati hiba: " + req.error);
+                ShowError("Hálózati error: " + req.error);
                 Debug.Log("BODY: " + req.downloadHandler.text);
                 yield break;
             }
 
-            // Backend hiba
+            // Backend error
             if (req.responseCode < 200 || req.responseCode >= 300)
             {
                 ShowError("Hibás bejelentkezés!");
@@ -161,25 +167,31 @@ public class login : MonoBehaviour
                 if (GameManager.Instance != null)
                 {
                     GameManager.Instance.userId = data.user.id;
-                    GameManager.Instance.penz = data.user.penz;
-                    GameManager.Instance.bot = data.user.bot;
-                    GameManager.Instance.halak = data.user.halak;
-                    GameManager.Instance.csalik = data.user.csalik;
+                    GameManager.Instance.gold = data.user.gold;
+                    GameManager.Instance.rod = data.user.rod;
+                    GameManager.Instance.bream = data.user.bream;
+                    GameManager.Instance.catfish = data.user.catfish;
+                    GameManager.Instance.ray = data.user.ray;
+                    GameManager.Instance.octopus = data.user.octopus;
+                    GameManager.Instance.lure = data.user.lure;
                     GameManager.Instance.bearerToken = data.token;
                 }
                 else if (gameManager != null)
                 {
                     gameManager.userId = data.user.id;
-                    gameManager.penz = data.user.penz;
-                    gameManager.bot = data.user.bot;
-                    gameManager.halak = data.user.halak;
-                    gameManager.csalik = data.user.csalik;
+                    gameManager.gold = data.user.gold;
+                    gameManager.rod = data.user.rod;
+                    gameManager.bream = data.user.bream;
+                    gameManager.catfish = data.user.catfish;
+                    gameManager.ray = data.user.ray;
+                    gameManager.octopus = data.user.octopus;
+                    gameManager.lure = data.user.lure;
                     gameManager.bearerToken = data.token;
                 }
                 Debug.Log("User data loaded successfully directly from login.");
             }
 
-            Debug.Log("penz: " + (GameManager.Instance != null ? GameManager.Instance.penz : gameManager.penz));
+            Debug.Log("gold: " + (GameManager.Instance != null ? GameManager.Instance.gold : gameManager.gold));
 
             SceneManager.LoadScene("mainMenu");
         }
@@ -211,10 +223,13 @@ public class login : MonoBehaviour
                     if (gameManager != null)
                     {
                         gameManager.userId = userData.id;
-                        gameManager.penz = userData.penz;
-                        gameManager.bot = userData.bot;
-                        gameManager.halak = userData.halak;
-                        gameManager.csalik = userData.csalik;
+                        gameManager.gold = userData.gold;
+                        gameManager.rod = userData.rod;
+                        gameManager.bream = userData.bream;
+                        gameManager.catfish = userData.catfish;
+                        gameManager.ray = userData.ray;
+                        gameManager.octopus = userData.octopus;
+                        gameManager.lure = userData.lure;
                         gameManager.bearerToken = token;
                     }
 

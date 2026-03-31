@@ -17,10 +17,13 @@ public class GameManager : MonoBehaviour
     /// 
 
     public int userId;
-    public int penz;
-    public int bot;
-    public int halak;
-    public int csalik;
+    public int gold;
+    public int rod;
+    public int bream;
+    public int catfish;
+    public int ray;
+    public int octopus;
+    public int lure;
 
     /// <summary>
     /// ////////////////////////    
@@ -32,32 +35,35 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         //játék elején betöltjük a játékos alap felszerelését
-        penz = 0;
-        bot = 0;
-        halak = 0;
-        csalik = 0;
+        gold = 0;
+        rod = 0;
+        bream = 0;
+        catfish = 0;
+        ray = 0;
+        octopus = 0;
+        lure = 0;
     }
 
     //gold management
-    public void AddPenz(int amount)
+    public void Addgold(int amount)
     {
         if (amount <= 0) return;
-        penz += amount;
-        Debug.Log($"Gold: {penz}");
+        gold += amount;
+        Debug.Log($"Gold: {gold}");
     }
 
-    public bool SpendPenz(int amount)
+    public bool Spendgold(int amount)
     {
         if (amount <= 0) return true;
 
-        if (penz < amount)
+        if (gold < amount)
         {
-            Debug.Log("Nincs elég penz!");
+            Debug.Log("Nincs elég gold!");
             return false;
         }
 
-        penz -= amount;
-        Debug.Log($"penz: {penz}");
+        gold -= amount;
+        Debug.Log($"gold: {gold}");
         return true;
     }
 
@@ -86,17 +92,20 @@ public class GameManager : MonoBehaviour
 
             StartCoroutine(SaveSystem.UpdateScore(
                 userId,
-                penz,
-                bot,
-                halak,
-                csalik,
+                gold,
+                rod,
+                bream,
+                catfish,
+                ray,
+                octopus,
+                lure,
                 bearerToken
             ));
 
             Debug.Log("User ID: " + userId);
-            Debug.Log("Pénz: " + penz);
-            Debug.Log("Bot: " + bot);
-            Debug.Log("Halak: " + halak);
-            Debug.Log("Csalik: " + csalik);
+            Debug.Log("Pénz: " + gold);
+            Debug.Log("rod: " + rod);
+            Debug.Log("bream: " + bream);
+            Debug.Log("lure: " + lure);
     }
 }

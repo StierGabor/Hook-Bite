@@ -77,7 +77,7 @@ public class miniGame : MonoBehaviour
         if (caught)
         {
             Debug.Log("Fish caught!");
-            GameManager.Instance.halak += 1;
+            GameManager.Instance.bream += 1;
         }
         else
         {

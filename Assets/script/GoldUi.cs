@@ -9,6 +9,6 @@ public class GoldUI : MonoBehaviour
     {
         if (GameManager.Instance == null || goldText == null) return;
 
-        goldText.text = "Gold: " + GameManager.Instance.penz;
+        goldText.text = "Gold: " + GameManager.Instance.gold;
     }
 }

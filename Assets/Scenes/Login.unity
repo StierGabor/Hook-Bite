@@ -353,10 +353,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   userId: 0
-  penz: 0
-  bot: 0
-  halak: 0
-  csalik: 0
+  gold: 0
+  rod: 0
+  bream: 0
+  catfish: 0
+  ray: 0
+  octopus: 0
+  lure: 0
   bearerToken: 
 --- !u!1 &544933518
 GameObject:
@@ -973,9 +976,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2ab410b94634194e961efa2d14b944b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hiba: {fileID: 1614693756}
-  Felhasznalo: {fileID: 544933520}
-  Jelszo: {fileID: 932299070}
+  error: {fileID: 1614693756}
+  User: {fileID: 544933520}
+  Password: {fileID: 932299070}
   gameManager: {fileID: 481646731}
   apiBaseUrl: http://127.0.0.1:8000/api
 --- !u!1 &1002253014
@@ -1884,9 +1887,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2ab410b94634194e961efa2d14b944b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hiba: {fileID: 1614693756}
-  Felhasznalo: {fileID: 544933520}
-  Jelszo: {fileID: 932299070}
+  error: {fileID: 0}
+  User: {fileID: 0}
+  Password: {fileID: 0}
   gameManager: {fileID: 0}
   apiBaseUrl: http://127.0.0.1:8000/api/login
 --- !u!1 &1728405025

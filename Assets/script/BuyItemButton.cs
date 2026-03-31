@@ -2,7 +2,7 @@
 
 public class BuyItemButton : MonoBehaviour
 {
-    public int targetBotTier = 1;
+    public int targetrodTier = 1;
     private int itemPrice;
 
     void Start()
@@ -13,9 +13,9 @@ public class BuyItemButton : MonoBehaviour
 
     void SetPrice()
     {
-        if (targetBotTier == 1) itemPrice = 100;
-        else if (targetBotTier == 2) itemPrice = 200;
-        else if (targetBotTier == 3) itemPrice = 500;
+        if (targetrodTier == 1) itemPrice = 100;
+        else if (targetrodTier == 2) itemPrice = 200;
+        else if (targetrodTier == 3) itemPrice = 500;
     }
 
     public void RefreshUI()
@@ -23,7 +23,7 @@ public class BuyItemButton : MonoBehaviour
         if (GameManager.Instance == null) return;
 
         // Show ONLY the next available upgrade
-        bool shouldShow = GameManager.Instance.bot == targetBotTier - 1;
+        bool shouldShow = GameManager.Instance.rod == targetrodTier - 1;
         gameObject.SetActive(shouldShow);
     }
 
@@ -32,12 +32,12 @@ public class BuyItemButton : MonoBehaviour
         if (GameManager.Instance == null) return;
 
         // Check again (safety)
-        if (GameManager.Instance.bot != targetBotTier - 1)
+        if (GameManager.Instance.rod != targetrodTier - 1)
             return;
 
-        if (GameManager.Instance.SpendPenz(itemPrice))
+        if (GameManager.Instance.Spendgold(itemPrice))
         {
-            GameManager.Instance.bot = targetBotTier;
+            GameManager.Instance.rod = targetrodTier;
 
             // 🔥 Refresh ALL buttons after purchase
             RefreshAllButtons();

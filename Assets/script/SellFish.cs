@@ -6,18 +6,18 @@ public class SellFish : MonoBehaviour
 {
     public void SellAll()
     {
-        if (GameManager.Instance.halak > 0)
+        if (GameManager.Instance.bream > 0)
         {
 
-            int numberOfFish = GameManager.Instance.halak;
+            int numberOfFish = GameManager.Instance.bream;
             int fishWorth = 2;
             int totalWorth = numberOfFish * fishWorth;
-            GameManager.Instance.AddPenz(totalWorth);
+            GameManager.Instance.Addgold(totalWorth);
 
-            //majd reseteljük a halak számát
-            GameManager.Instance.halak = 0;
+            //majd reseteljük a bream számát
+            GameManager.Instance.bream = 0;
 
-            Debug.Log("Halak eladva!");
+            Debug.Log("bream eladva!");
         }
         else
         {

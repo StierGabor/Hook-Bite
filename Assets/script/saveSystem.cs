@@ -7,10 +7,13 @@ public static class SaveSystem
 {
     public static IEnumerator UpdateScore(
         int userId,
-        int penz,
-        int bot,
-        int halak,
-        int csalik,
+        int gold,
+        int rod,
+        int bream,
+        int catfish,
+        int ray,
+        int octopus,
+        int lure,
         string bearerToken = null // ha később auth kell
     )
     {
@@ -20,10 +23,13 @@ public static class SaveSystem
         // Laravel validátorhoz illeszkedő JSON payload
         var payload = new Payload
         {
-            penz = penz,
-            bot = bot,
-            halak = halak,
-            csalik = csalik
+            gold = gold,
+            rod = rod,
+            bream = bream,
+            catfish = catfish,
+            ray = ray,
+            octopus = octopus,
+            lure = lure
         };
 
         string jsonData = JsonUtility.ToJson(payload);
@@ -52,8 +58,8 @@ public static class SaveSystem
         }
         else
         {
-            // Laravel validation hibák esetén is 422-t kapsz → itt olvasható a hibatest
-            Debug.LogError($"[SaveSystem] Hiba: {request.responseCode} | {request.error} | Body: {request.downloadHandler.text}");  
+            // Laravel validation hibák esetén is 422-t kapsz → itt olvasható a errortest
+            Debug.LogError($"[SaveSystem] error: {request.responseCode} | {request.error} | Body: {request.downloadHandler.text}");  
         }
     }
 
@@ -61,9 +67,12 @@ public static class SaveSystem
     [System.Serializable]
     private class Payload
     {
-        public int penz;
-        public int bot;
-        public int halak;
-        public int csalik;
+        public int gold;
+        public int rod;
+        public int bream;
+        public int catfish;
+        public int ray;
+        public int octopus;
+        public int lure;
     }
 }
