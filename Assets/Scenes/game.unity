@@ -383,7 +383,6 @@ GameObject:
   m_Component:
   - component: {fileID: 68340741}
   - component: {fileID: 68340740}
-  - component: {fileID: 68340742}
   m_Layer: 10
   m_Name: WormZone
   m_TagString: WormZone
@@ -451,19 +450,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &68340742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 68340739}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 730f4ec4f5c4f1249b843a7f734f4268, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  promptUI: {fileID: 727023970}
 --- !u!1 &78611881
 GameObject:
   m_ObjectHideFlags: 0
@@ -5685,7 +5671,6 @@ GameObject:
   m_Component:
   - component: {fileID: 254363787}
   - component: {fileID: 254363786}
-  - component: {fileID: 254363788}
   m_Layer: 10
   m_Name: ShopZone
   m_TagString: ShopZone
@@ -5753,19 +5738,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &254363788
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 254363785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 730f4ec4f5c4f1249b843a7f734f4268, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  promptUI: {fileID: 727023970}
 --- !u!1001 &265931304
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7013,7 +6985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a99e7f55147495844b29b5d118be397c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetBotTier: 2
+  targetrodTier: 1
 --- !u!1 &415841118
 GameObject:
   m_ObjectHideFlags: 0
@@ -8354,7 +8326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a99e7f55147495844b29b5d118be397c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetBotTier: 1
+  targetrodTier: 1
 --- !u!1 &633131850
 GameObject:
   m_ObjectHideFlags: 0
@@ -11837,7 +11809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a99e7f55147495844b29b5d118be397c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetBotTier: 3
+  targetrodTier: 1
 --- !u!1 &1419678648
 GameObject:
   m_ObjectHideFlags: 0
@@ -14029,7 +14001,6 @@ GameObject:
   - component: {fileID: 2059012907}
   - component: {fileID: 2059012906}
   - component: {fileID: 2059012908}
-  - component: {fileID: 2059012909}
   m_Layer: 10
   m_Name: FishingZone
   m_TagString: 'FishingZone '
@@ -14109,19 +14080,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cabd816d1643604f89d972237fbd5ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2059012909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2059012905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 730f4ec4f5c4f1249b843a7f734f4268, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  promptUI: {fileID: 727023970}
 --- !u!1001 &2006021699433272066
 PrefabInstance:
   m_ObjectHideFlags: 0

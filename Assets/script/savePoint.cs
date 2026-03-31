@@ -12,6 +12,9 @@ public class SavePoint : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // Prevent accidental save triggering if this script was copy-pasted to other interaction zones
+        if (gameObject.tag == "ShopZone" || gameObject.tag == "WormZone" || gameObject.name.Contains("Fish")) return;
+
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
@@ -21,6 +24,9 @@ public class SavePoint : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        // Prevent accidental save triggering if this script was copy-pasted to other interaction zones
+        if (gameObject.tag == "ShopZone" || gameObject.tag == "WormZone" || gameObject.name.Contains("Fish")) return;
+
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
