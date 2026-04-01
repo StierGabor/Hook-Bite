@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 public class Worm : MonoBehaviour
 {
@@ -10,7 +11,6 @@ public class Worm : MonoBehaviour
     public Sprite emptySprite;
 
     public TMP_Text scoreText;   // TMP UI eleme
-    private int score = 0;
 
     private int activeHole = -1;
 
@@ -47,7 +47,7 @@ public class Worm : MonoBehaviour
         if (index == activeHole)
         {
             Debug.Log("Giliszta elkapva!");
-            score++;                 // ⬅️ pont növelése
+            GameManager.Instance.lure+=1;                 // ⬅️ pont növelése
             UpdateScoreUI();         // ⬅️ UI frissítés
             SpawnWorm();
         }
@@ -59,6 +59,6 @@ public class Worm : MonoBehaviour
 
     void UpdateScoreUI()
     {
-        scoreText.text = "Score: " + score;
+        scoreText.text = "Lures: " + GameManager.Instance.lure;
     }
 }
