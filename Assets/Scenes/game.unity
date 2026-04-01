@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 5988187}
   - component: {fileID: 5988186}
   - component: {fileID: 5988190}
+  - component: {fileID: 5988191}
   m_Layer: 5
   m_Name: ShopCanvas
   m_TagString: Untagged
@@ -237,6 +238,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa17ea40fca388e448aad7b24b096ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5988191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5988185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 678926bdf9b85b740820d5dcd48464da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goldText: {fileID: 1925281444}
+  wormText: {fileID: 1979046233}
+  fishText: {fileID: 1044298865}
 --- !u!1 &34670717
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,6 +399,7 @@ GameObject:
   m_Component:
   - component: {fileID: 68340741}
   - component: {fileID: 68340740}
+  - component: {fileID: 68340742}
   m_Layer: 10
   m_Name: WormZone
   m_TagString: WormZone
@@ -450,6 +467,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &68340742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68340739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f4ec4f5c4f1249b843a7f734f4268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  promptUI: {fileID: 727023970}
 --- !u!1 &78611881
 GameObject:
   m_ObjectHideFlags: 0
@@ -5111,7 +5141,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.279, y: 1.367}
+  m_AnchoredPosition: {x: -2.279, y: 4.7}
   m_SizeDelta: {x: 152.816, y: 91.689}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &157947173
@@ -5516,7 +5546,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 727023971}
   - {fileID: 457805150}
   - {fileID: 291990746}
   - {fileID: 691861138}
@@ -5671,6 +5700,7 @@ GameObject:
   m_Component:
   - component: {fileID: 254363787}
   - component: {fileID: 254363786}
+  - component: {fileID: 254363788}
   m_Layer: 10
   m_Name: ShopZone
   m_TagString: ShopZone
@@ -5738,6 +5768,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &254363788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254363785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f4ec4f5c4f1249b843a7f734f4268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  promptUI: {fileID: 727023970}
 --- !u!1001 &265931304
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8753,7 +8796,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &727023971
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8762,11 +8805,11 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 727023970}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 226996129}
+  m_Father: {fileID: 1780814032}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -9924,7 +9967,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Fish:'
+  m_text: 'Fish: 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -13016,6 +13059,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 727023971}
   - {fileID: 1482635130}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13167,7 +13211,7 @@ GameObject:
   - component: {fileID: 1828540973}
   m_Layer: 10
   m_Name: SaveZone
-  m_TagString: Untagged
+  m_TagString: SaveZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13256,7 +13300,6 @@ GameObject:
   - component: {fileID: 1925281442}
   - component: {fileID: 1925281445}
   - component: {fileID: 1925281444}
-  - component: {fileID: 1925281443}
   m_Layer: 5
   m_Name: GoldText
   m_TagString: Untagged
@@ -13283,19 +13326,6 @@ RectTransform:
   m_AnchoredPosition: {x: -60.035, y: 36.734}
   m_SizeDelta: {x: 245.308, y: 61.327}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1925281443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1925281441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 678926bdf9b85b740820d5dcd48464da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goldText: {fileID: 1925281444}
 --- !u!114 &1925281444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13571,7 +13601,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Worms:
+  m_text: 'Worms: 0
 
 '
   m_isRightToLeft: 0
@@ -14001,6 +14031,7 @@ GameObject:
   - component: {fileID: 2059012907}
   - component: {fileID: 2059012906}
   - component: {fileID: 2059012908}
+  - component: {fileID: 2059012909}
   m_Layer: 10
   m_Name: FishingZone
   m_TagString: 'FishingZone '
@@ -14080,6 +14111,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cabd816d1643604f89d972237fbd5ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2059012909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059012905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f4ec4f5c4f1249b843a7f734f4268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  promptUI: {fileID: 727023970}
 --- !u!1001 &2006021699433272066
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -13,30 +13,33 @@ public class SavePoint : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // Prevent accidental save triggering if this script was copy-pasted to other interaction zones
-        if (gameObject.tag == "ShopZone" || gameObject.tag == "WormZone" || gameObject.name.Contains("Fish")) return;
-
-        if (other.CompareTag("Player"))
+        if (gameObject.tag == "ShopZone" || gameObject.tag == "WormZone" || gameObject.name.Contains("Fish") || gameObject.tag == "SaveZone")
         {
-            playerInRange = true;
-            promptUI?.SetActive(true);
+            if (other.CompareTag("Player"))
+            {
+                playerInRange = true;
+                promptUI?.SetActive(true);
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         // Prevent accidental save triggering if this script was copy-pasted to other interaction zones
-        if (gameObject.tag == "ShopZone" || gameObject.tag == "WormZone" || gameObject.name.Contains("Fish")) return;
-
-        if (other.CompareTag("Player"))
+        if (gameObject.tag == "ShopZone" || gameObject.tag == "WormZone" || gameObject.name.Contains("Fish") || gameObject.tag == "SaveZone")
         {
-            playerInRange = false;
-            promptUI?.SetActive(false);
+
+            if (other.CompareTag("Player"))
+            {
+                playerInRange = false;
+                promptUI?.SetActive(false);
+            }
         }
-    }
+     }
 
     private void Update()
     {
-        if (playerInRange && Input.GetKeyDown(KeyCode.E))
+        if (playerInRange && gameObject.tag == "SaveZone" && Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("Mentés folyamatban...");
             if (GameManager.Instance != null)

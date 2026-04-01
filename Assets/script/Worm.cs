@@ -11,7 +11,7 @@ public class Worm : MonoBehaviour
     public Sprite emptySprite;
 
     public TMP_Text scoreText;   // TMP UI eleme
-
+    private int wormCount = 0;
     private int activeHole = -1;
 
     void Start()
@@ -47,7 +47,11 @@ public class Worm : MonoBehaviour
         if (index == activeHole)
         {
             Debug.Log("Giliszta elkapva!");
-            GameManager.Instance.lure+=1;                 // ⬅️ pont növelése
+
+            wormCount++;
+            if (wormCount % 10 == 0)
+                GameManager.Instance.lure+=1;                 // ⬅️ pont növelése
+
             UpdateScoreUI();         // ⬅️ UI frissítés
             SpawnWorm();
         }
