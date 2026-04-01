@@ -6,9 +6,34 @@ using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
 [System.Serializable]
+public class UserGameData
+{
+    public int gold;
+    public int rod;
+    public int lure;
+}
+
+[System.Serializable]
+public class UserCaughtFishes
+{
+    public int bream;
+    public int catfish;
+    public int ray;
+    public int octopus;
+}
+
+[System.Serializable]
 public class UserDataResponse
 {
     public int id;
+    
+    // Nested data from API (Laravel converts relation 'caughtFishes' to snake_case or camelCase depending on config, but latest log showed game and caught_fishes might be present if updated correctly)
+    public UserGameData game;
+    
+    public UserCaughtFishes caughtFishes; // Fallback for camelCase
+    public UserCaughtFishes caught_fishes; // Fallback for snake_case
+
+    // Fallback/flat fields
     public int gold;
     public int rod;
     public int bream;
@@ -164,28 +189,40 @@ public class login : MonoBehaviour
             // load integers directly from login payload
             if (data.user != null)
             {
+                int gold = data.user.game != null ? data.user.game.gold : data.user.gold;
+                int rod = data.user.game != null ? data.user.game.rod : data.user.rod;
+                int lure = data.user.game != null ? data.user.game.lure : data.user.lure;
+
+                // Handle both snake_case and camelCase serialization from Laravel
+                UserCaughtFishes fishes = data.user.caught_fishes != null ? data.user.caught_fishes : data.user.caughtFishes;
+
+                int bream = fishes != null ? fishes.bream : data.user.bream;
+                int catfish = fishes != null ? fishes.catfish : data.user.catfish;
+                int ray = fishes != null ? fishes.ray : data.user.ray;
+                int octopus = fishes != null ? fishes.octopus : data.user.octopus;
+
                 if (GameManager.Instance != null)
                 {
                     GameManager.Instance.userId = data.user.id;
-                    GameManager.Instance.gold = data.user.gold;
-                    GameManager.Instance.rod = data.user.rod;
-                    GameManager.Instance.bream = data.user.bream;
-                    GameManager.Instance.catfish = data.user.catfish;
-                    GameManager.Instance.ray = data.user.ray;
-                    GameManager.Instance.octopus = data.user.octopus;
-                    GameManager.Instance.lure = data.user.lure;
+                    GameManager.Instance.gold = gold;
+                    GameManager.Instance.rod = rod;
+                    GameManager.Instance.bream = bream;
+                    GameManager.Instance.catfish = catfish;
+                    GameManager.Instance.ray = ray;
+                    GameManager.Instance.octopus = octopus;
+                    GameManager.Instance.lure = lure;
                     GameManager.Instance.bearerToken = data.token;
                 }
                 else if (gameManager != null)
                 {
                     gameManager.userId = data.user.id;
-                    gameManager.gold = data.user.gold;
-                    gameManager.rod = data.user.rod;
-                    gameManager.bream = data.user.bream;
-                    gameManager.catfish = data.user.catfish;
-                    gameManager.ray = data.user.ray;
-                    gameManager.octopus = data.user.octopus;
-                    gameManager.lure = data.user.lure;
+                    gameManager.gold = gold;
+                    gameManager.rod = rod;
+                    gameManager.bream = bream;
+                    gameManager.catfish = catfish;
+                    gameManager.ray = ray;
+                    gameManager.octopus = octopus;
+                    gameManager.lure = lure;
                     gameManager.bearerToken = data.token;
                 }
                 Debug.Log("User data loaded successfully directly from login.");
@@ -220,16 +257,40 @@ public class login : MonoBehaviour
                     PlayerPrefs.SetInt("user_id", userData.id);
                     PlayerPrefs.Save();
 
-                    if (gameManager != null)
+                    int gold = userData.game != null ? userData.game.gold : userData.gold;
+                    int rod = userData.game != null ? userData.game.rod : userData.rod;
+                    int lure = userData.game != null ? userData.game.lure : userData.lure;
+
+                    // Handle both snake_case and camelCase serialization from Laravel
+                    UserCaughtFishes fishes = userData.caught_fishes != null ? userData.caught_fishes : userData.caughtFishes;
+
+                    int bream = fishes != null ? fishes.bream : userData.bream;
+                    int catfish = fishes != null ? fishes.catfish : userData.catfish;
+                    int ray = fishes != null ? fishes.ray : userData.ray;
+                    int octopus = fishes != null ? fishes.octopus : userData.octopus;
+
+                    if (GameManager.Instance != null)
+                    {
+                        GameManager.Instance.userId = userData.id;
+                        GameManager.Instance.gold = gold;
+                        GameManager.Instance.rod = rod;
+                        GameManager.Instance.bream = bream;
+                        GameManager.Instance.catfish = catfish;
+                        GameManager.Instance.ray = ray;
+                        GameManager.Instance.octopus = octopus;
+                        GameManager.Instance.lure = lure;
+                        GameManager.Instance.bearerToken = token;
+                    }
+                    else if (gameManager != null)
                     {
                         gameManager.userId = userData.id;
-                        gameManager.gold = userData.gold;
-                        gameManager.rod = userData.rod;
-                        gameManager.bream = userData.bream;
-                        gameManager.catfish = userData.catfish;
-                        gameManager.ray = userData.ray;
-                        gameManager.octopus = userData.octopus;
-                        gameManager.lure = userData.lure;
+                        gameManager.gold = gold;
+                        gameManager.rod = rod;
+                        gameManager.bream = bream;
+                        gameManager.catfish = catfish;
+                        gameManager.ray = ray;
+                        gameManager.octopus = octopus;
+                        gameManager.lure = lure;
                         gameManager.bearerToken = token;
                     }
 
