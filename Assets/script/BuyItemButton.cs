@@ -11,7 +11,7 @@ public class BuyItemButton : MonoBehaviour
         RefreshUI();
     }
 
-    void SetPrice()
+    void SetPrice() // Simple pricing logic based on tier
     {
         if (targetrodTier == 1) itemPrice = 100;
         else if (targetrodTier == 2) itemPrice = 200;
@@ -22,7 +22,7 @@ public class BuyItemButton : MonoBehaviour
     {
         if (GameManager.Instance == null) return;
 
-        // Show ONLY the next available upgrade
+        // Show ONLY the next available upgrade button
         bool shouldShow = GameManager.Instance.rod == targetrodTier - 1;
         gameObject.SetActive(shouldShow);
     }
@@ -31,21 +31,20 @@ public class BuyItemButton : MonoBehaviour
     {
         if (GameManager.Instance == null) return;
 
-        // Check again (safety)
         if (GameManager.Instance.rod != targetrodTier - 1)
             return;
 
+        // Attempt to spend gold and upgrade the rod - Main Purchase Logic
         if (GameManager.Instance.Spendgold(itemPrice))
         {
             GameManager.Instance.rod = targetrodTier;
-
-            // 🔥 Refresh ALL buttons after purchase
             RefreshAllButtons();
         }
         else
         {
             Debug.Log("Nincs elég gold");
         }
+
     }
 
     void RefreshAllButtons()

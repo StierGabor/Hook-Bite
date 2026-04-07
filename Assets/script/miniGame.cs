@@ -13,7 +13,6 @@ public class miniGame : MonoBehaviour
     private int direction = 1;
     
 
-
     void Update()
     {
         if (bar != null && pointer != null)
@@ -81,9 +80,7 @@ public class miniGame : MonoBehaviour
         }
         else
         {
-        #if TESZT
             Debug.Log("Missed!");
-        #endif
         }
 
         if (FishingPanel != null)
