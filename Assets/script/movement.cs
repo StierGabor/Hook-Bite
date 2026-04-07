@@ -12,7 +12,9 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        Debug.Log("PlayerMovement Start: Rigidbody2D and SpriteRenderer fetched.");
     }
+
 
     void FixedUpdate()
     {

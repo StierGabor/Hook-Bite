@@ -24,7 +24,13 @@ public class FishingUiController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            isOpen = !isOpen;
+            if (!fishingPanel.activeSelf && GameManager.Instance != null && GameManager.Instance.lure <= 0)
+            {
+                Debug.Log("Nincs elég csalid a horgászathoz!");
+                return;
+            }
+
+            isOpen = !fishingPanel.activeSelf;
             fishingPanel.SetActive(isOpen);
 
             // MOZGÁS KI/BE

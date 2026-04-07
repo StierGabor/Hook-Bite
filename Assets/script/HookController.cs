@@ -10,7 +10,9 @@ public class HookController : MonoBehaviour
     void Start()
     {
         hookRect = GetComponent<RectTransform>();
+        Debug.Log("HookController Start: Hook Rect initialized.");
     }
+
 
     void Update()
     {

@@ -34,8 +34,10 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
+        Debug.Log("GameManager Start: Initializing base gear to 0.");
         //játék elején betöltjük a játékos alap felszerelését
         gold = 0;
+
         rod = 0;
         bream = 0;
         catfish = 0;
@@ -47,38 +49,50 @@ public class GameManager : MonoBehaviour
     //gold management
     public void Addgold(int amount)
     {
-        if (amount <= 0) return;
+        if (amount <= 0) 
+        {
+            Debug.LogWarning($"GameManager Addgold: Attempted to add invalid amount {amount}");
+            return;
+        }
         gold += amount;
-        Debug.Log($"Gold: {gold}");
+        Debug.Log($"GameManager Addgold: Gold increased by {amount}. New total: {gold}");
     }
 
     public bool Spendgold(int amount)
     {
-        if (amount <= 0) return true;
+        if (amount <= 0) 
+        {
+            Debug.LogWarning($"GameManager Spendgold: Attempted to spend invalid amount {amount}");
+            return true;
+        }
 
         if (gold < amount)
         {
-            Debug.Log("Nincs elég gold!");
+            Debug.LogWarning($"GameManager Spendgold: Not enough gold! Required: {amount}, Current: {gold}");
             return false;
         }
 
         gold -= amount;
-        Debug.Log($"gold: {gold}");
+        Debug.Log($"GameManager Spendgold: Spent {amount}. Remaining gold: {gold}");
         return true;
     }
 
     private void Awake()
     {
+        Debug.Log("GameManager Awake: Checking instance.");
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject); // ← THIS is key
+            Debug.Log("GameManager Awake: Instance created and DontDestroyOnLoad set.");
         }
         else
         {
+            Debug.Log("GameManager Awake: Duplicate instance destroyed.");
             Destroy(gameObject);
         }
     }
+
 
     public void SaveToDatabase()
     {

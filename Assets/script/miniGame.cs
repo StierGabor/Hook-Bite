@@ -61,6 +61,16 @@ public class miniGame : MonoBehaviour
     {
         if (pointer == null || goodZoneCollider == null) return;
 
+        if (GameManager.Instance != null)
+        {
+            if (GameManager.Instance.lure <= 0)
+            {
+                Debug.Log("Nincs több csalid!");
+                return;
+            }
+            GameManager.Instance.lure--; // Csali felhasználása
+        }
+
         Collider2D pointerCollider = pointer.GetComponent<Collider2D>();
         bool caught = false;
 
@@ -76,7 +86,28 @@ public class miniGame : MonoBehaviour
         if (caught)
         {
             Debug.Log("Fish caught!");
-            GameManager.Instance.bream += 1;
+            
+            int rand = Random.Range(0, 100);
+            if (rand < 60)
+            {
+                GameManager.Instance.bream += 1;
+                Debug.Log("Caught a Bream!");
+            }
+            else if (rand < 85)
+            {
+                GameManager.Instance.catfish += 1;
+                Debug.Log("Caught a Catfish!");
+            }
+            else if (rand < 98)
+            {
+                GameManager.Instance.ray += 1;
+                Debug.Log("Caught a Ray!");
+            }
+            else
+            {
+                GameManager.Instance.octopus += 1;
+                Debug.Log("Caught an Octopus!");
+            }
         }
         else
         {
