@@ -12,6 +12,7 @@ public class miniGame : MonoBehaviour
     public float edgeOffset = -0.1f; // Use this to manually fine-tune in the Unity Inspector how far it goes to the edge
     private int direction = 1;
     
+    public movement fishMovement;
 
     void Update()
     {
@@ -87,23 +88,34 @@ public class miniGame : MonoBehaviour
         {
             Debug.Log("Fish caught!");
             
-            int rand = Random.Range(0, 100);
-            if (rand < 60)
+            // Try to find the movement script if not explicitly assigned
+            if (fishMovement == null && goodZoneCollider != null)
+            {
+                fishMovement = goodZoneCollider.GetComponent<movement>();
+            }
+
+            int caughtIndex = 0; // Default to Bream
+            if (fishMovement != null)
+            {
+                caughtIndex = fishMovement.currentFishIndex;
+            }
+            
+            if (caughtIndex == 0)
             {
                 GameManager.Instance.bream += 1;
                 Debug.Log("Caught a Bream!");
             }
-            else if (rand < 85)
+            else if (caughtIndex == 1)
             {
                 GameManager.Instance.catfish += 1;
                 Debug.Log("Caught a Catfish!");
             }
-            else if (rand < 98)
+            else if (caughtIndex == 2)
             {
                 GameManager.Instance.ray += 1;
                 Debug.Log("Caught a Ray!");
             }
-            else
+            else if (caughtIndex == 3)
             {
                 GameManager.Instance.octopus += 1;
                 Debug.Log("Caught an Octopus!");

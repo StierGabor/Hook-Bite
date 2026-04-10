@@ -17,6 +17,8 @@ public class movement : MonoBehaviour
     public float[] maxSpeeds = new float[] { 2f, 2.5f, 1.2f, 4f }; // Maximum sebesség ritkaság szerint
     public float edgeOffset = -0.1f;
 
+    public int currentFishIndex;
+
     private float currentSpeed = 2f;
     private int direction = -1; // -1, hogy ellentétes irányba induljon, mint a pointer (ami 1)
     private bool wasFishingPanelActive = false;
@@ -130,6 +132,7 @@ public class movement : MonoBehaviour
                 }
             }
 
+            currentFishIndex = selectedIndex;
             fishImage.sprite = fishImages[selectedIndex];
 
             // Speed assignment based on rarity
