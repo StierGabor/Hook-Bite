@@ -56,8 +56,8 @@ public class login : MonoBehaviour
     public TextMeshProUGUI error;
     public TMP_InputField User;
     public TMP_InputField Password;
-    public GameManager gameManager; // Referencia a GameManagerre
-    public string apiBaseUrl = "http://127.0.0.1:8000/api"; //api base
+    public GameManager gameManager; // Reference to GameManager
+    public string apiBaseUrl = "http://127.0.0.1:8000/api"; // api base
 
     void Start()
     {
@@ -80,7 +80,7 @@ public class login : MonoBehaviour
         string email = User.text.Trim();
         string password = Password.text;
 
-        //Validáció
+        // Validation
 
         if (email == "test@email.com" && password == "testing")
         {
@@ -112,18 +112,18 @@ public class login : MonoBehaviour
 
         if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
         {
-            ShowError("Töltsd ki az emailt és a jelszót!");
+            ShowError("Fill in the email and password!");
             return;
         }
 
         if (!IsValidEmail(email))
         {
-            ShowError("Hibás email formátum!");
+            ShowError("Invalid email format!");
             return;
         }
         if (password.Length < 6)
         {
-            ShowError("A jelszónak minimum 6 karakternek kell lennie!");
+            ShowError("The password must be at least 6 characters!");
             return;
         }
 
@@ -149,10 +149,10 @@ public class login : MonoBehaviour
 
             yield return req.SendWebRequest();
 
-            // Hálózati error
+            // Network error
             if (req.result != UnityWebRequest.Result.Success)
             {
-                ShowError("Hálózati error: " + req.error);
+                ShowError("Network error: " + req.error);
                 Debug.Log("BODY: " + req.downloadHandler.text);
                 yield break;
             }
@@ -160,7 +160,7 @@ public class login : MonoBehaviour
             // Backend error
             if (req.responseCode < 200 || req.responseCode >= 300)
             {
-                ShowError("Hibás bejelentkezés!");
+                ShowError("Invalid login!");
                 Debug.Log("STATUS: " + req.responseCode);
                 Debug.Log("BODY: " + req.downloadHandler.text);
                 yield break;
@@ -172,7 +172,7 @@ public class login : MonoBehaviour
 
             if (data == null || string.IsNullOrEmpty(data.token))
             {
-                ShowError("Nem jött token a szervertől!");
+                ShowError("No token from the server!");
                 Debug.Log("RESPONSE: " + responseText);
                 yield break;
             }
@@ -184,7 +184,7 @@ public class login : MonoBehaviour
             }
             PlayerPrefs.Save();
 
-            Debug.Log("Sikeres login, token elmentve: " + data.token);
+            Debug.Log("Successful login, token saved: " + data.token);
 
             // load integers directly from login payload
             if (data.user != null)
@@ -236,7 +236,7 @@ public class login : MonoBehaviour
 
     IEnumerator FetchUserData(string token)
     {
-        string url = apiBaseUrl + "/user"; // A szerveren lévő végpont, ami visszaadja a usert
+        string url = apiBaseUrl + "/user"; // The endpoint on the server that returns the user
         
         Debug.Log("FETCH USER URL: " + url);
         

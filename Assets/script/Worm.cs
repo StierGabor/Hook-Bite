@@ -6,17 +6,18 @@ using UnityEngine.UI;
 
 public class Worm : MonoBehaviour
 {
-    public List<Button> holeButtons;   // 9 UI gomb
+    public List<Button> holeButtons;   // 9 UI buttons
     public Sprite wormSprite;
     public Sprite emptySprite;
 
-    public TMP_Text scoreText;   // TMP UI eleme
+    public TMP_Text scoreText;   // TMP UI element
     private int wormCount = 0;
     private int activeHole = -1;
+    private int lastLureCount = -1;
 
     void Start()
     {
-        // Gombokra kattintás figyelése
+        // Listen for button clicks
         for (int i = 0; i < holeButtons.Count; i++)
         {
             int index = i;
@@ -27,18 +28,28 @@ public class Worm : MonoBehaviour
         SpawnWorm();
     }
 
+    void Update()
+    {
+        // Update UI if the lure count changed from outside
+        if (GameManager.Instance != null && GameManager.Instance.lure != lastLureCount)
+        {
+            lastLureCount = GameManager.Instance.lure;
+            UpdateScoreUI();
+        }
+    }
+
     void SpawnWorm()
     {
-        // Minden gomb üres legyen
+        // Make all buttons empty
         for (int i = 0; i < holeButtons.Count; i++)
         {
             holeButtons[i].GetComponent<Image>().sprite = emptySprite;
         }
 
-        // Random hely kiválasztása
+        // Choose a random location
         activeHole = Random.Range(0, holeButtons.Count);
 
-        // Giliszta megjelenítése
+        // Show worm
         holeButtons[activeHole].GetComponent<Image>().sprite = wormSprite;
     }
 
@@ -46,18 +57,18 @@ public class Worm : MonoBehaviour
     {
         if (index == activeHole)
         {
-            Debug.Log("Giliszta elkapva!");
+            Debug.Log("Worm caught!");
 
             wormCount++;
             if (wormCount % 10 == 0)
-                GameManager.Instance.lure+=1;                 // ⬅️ pont növelése
+                GameManager.Instance.lure += 1;                 // ⬅️ increase score
 
-            UpdateScoreUI();         // ⬅️ UI frissítés
+            UpdateScoreUI();         // ⬅️ UI update
             SpawnWorm();
         }
         else
         {
-            Debug.Log("Üres lyuk!");
+            Debug.Log("Empty hole!");
         }
     }
 

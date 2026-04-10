@@ -4,19 +4,19 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [Header("API mentéshez")]
+    [Header("For API saving")]
 
     /// <summary>
     /// ////////////////////////    
     /// 
-    /// A játékos adatait itt tároljuk, amiket majd a SaveSystem segítségével elküldünk a szervernek.
-    /// Ugyan akkor ezek itt nem csak a szerver adatai hanem a runtime változók is, amiket a játék során használunk.
-    /// Jelenleg a pénz van össze kötve a GOLD UI-al és a miniGame-el is, a többi változó még nincs használva.
+    /// Player data is stored here, which will be sent to the server using SaveSystem.
+    /// At the same time, these are not only server data but also runtime variables used during the game.
+    /// Currently, gold is connected to the GOLD UI and the miniGame, other variables are not used yet.
     /// 
     /// </summary>
     /// 
 
-    public int userId;
+    public int userId; //Player ID, Used to identify the player in the database. This will be set when the player logs in.
     public int gold;
     public int rod;
     public int bream;
@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         Debug.Log("GameManager Start: Initializing base gear to 0.");
-        //játék elején betöltjük a játékos alap felszerelését
+        // Load the player's basic equipment at the start of the game
         gold = 0;
 
         rod = 0;
@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
             ));
 
             Debug.Log("User ID: " + userId);
-            Debug.Log("Pénz: " + gold);
+            Debug.Log("Gold: " + gold);
             Debug.Log("rod: " + rod);
             Debug.Log("bream: " + bream);
             Debug.Log("lure: " + lure);

@@ -21,18 +21,18 @@ public class HookController : MonoBehaviour
 
         Vector2 input = new Vector2(inputX, inputY);
 
-        //  EZ A LÉNYEG
+        // THIS IS THE MAIN LOGIC
         if (input.magnitude > 1f)
             input = input.normalized;
 
         Vector2 pos = hookRect.anchoredPosition;
         pos += input * speed * Time.deltaTime;
 
-        // Panel fél méretek
+        // Panel half sizes
         float panelHalfWidth = panelRect.rect.width / 2f;
         float panelHalfHeight = panelRect.rect.height / 2f;
 
-        // Hook fél méretek
+        // Hook half sizes
         float hookHalfWidth = hookRect.rect.width / 2f;
         float hookHalfHeight = hookRect.rect.height / 2f;
 

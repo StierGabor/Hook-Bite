@@ -7,9 +7,9 @@ public class miniGame : MonoBehaviour
     public Transform pointer;
     public Collider2D goodZoneCollider;
     public GameObject FishingPanel;
-    public PlayerMovement playerMovement; // Referencia a játékos mozgására
+    public PlayerMovement playerMovement; // Reference to player's movement
     public float speed = 5f;
-    public float edgeOffset = -0.1f; // Ezzel a Unity Inspectorban manuálisan finomhangolhatod, mennyire menjen ki a széléig
+    public float edgeOffset = -0.1f; // Use this to manually fine-tune in the Unity Inspector how far it goes to the edge
     private int direction = 1;
     
 
@@ -32,16 +32,16 @@ public class miniGame : MonoBehaviour
         RectTransform rt = bar.GetComponent<RectTransform>();
         if (rt != null)
         {
-            // Ha a bar egy UI elem, a valós szélességét használjuk
+            // If the bar is a UI element, use its real width
             halfWidth = (rt.rect.width * rt.localScale.x) / 2f;
         }
         else
         {
-            // Ha sima 3D/2D elem, akkor a scale alapján
+            // If it is a simple 3D/2D element, based on scale
             halfWidth = bar.localScale.x / 2f;
         }
         
-        halfWidth += edgeOffset; // Hozzáadjuk a manuális korrekciót
+        halfWidth += edgeOffset; // Add the manual correction
 
         pointer.localPosition += new Vector3(speed * direction * Time.deltaTime, 0, 0);
 
@@ -65,10 +65,10 @@ public class miniGame : MonoBehaviour
         {
             if (GameManager.Instance.lure <= 0)
             {
-                Debug.Log("Nincs több csalid!");
+                Debug.Log("No more lures!");
                 return;
             }
-            GameManager.Instance.lure--; // Csali felhasználása
+            GameManager.Instance.lure--; // Use lure
         }
 
         Collider2D pointerCollider = pointer.GetComponent<Collider2D>();
