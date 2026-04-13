@@ -14,6 +14,52 @@ public class miniGame : MonoBehaviour
     
     public movement fishMovement;
 
+    private Vector2 initialBoxSize;
+    private float initialCircleRadius;
+    private int colliderType = 0; // 0 = None, 1 = Box, 2 = Circle
+    private bool isColliderInitialized = false;
+
+    void OnEnable()
+    {
+        if (!isColliderInitialized && goodZoneCollider != null)
+        {
+            if (goodZoneCollider is BoxCollider2D box)
+            {
+                initialBoxSize = box.size;
+                colliderType = 1;
+                isColliderInitialized = true;
+            }
+            else if (goodZoneCollider is CircleCollider2D circle)
+            {
+                initialCircleRadius = circle.radius;
+                colliderType = 2;
+                isColliderInitialized = true;
+            }
+        }
+        ApplyRodMultiplier();
+    }
+
+    private void ApplyRodMultiplier()
+    {
+        if (goodZoneCollider == null || GameManager.Instance == null || !isColliderInitialized) return;
+        
+        float multiplier = 1f;
+        int rodLevel = GameManager.Instance.rod; // Assuming rod level is stored in GameManager
+        if (rodLevel == 0) multiplier = 0.8f;
+        else if (rodLevel == 1) multiplier = 1.2f;
+        else if (rodLevel == 2) multiplier = 2f;
+        else if (rodLevel == 3) multiplier = 5f;
+
+        if (colliderType == 1)
+        {
+            ((BoxCollider2D)goodZoneCollider).size = initialBoxSize * multiplier;
+        }
+        else if (colliderType == 2)
+        {
+            ((CircleCollider2D)goodZoneCollider).radius = initialCircleRadius * multiplier;
+        }
+    }
+
     void Update()
     {
         if (bar != null && pointer != null)
@@ -93,6 +139,8 @@ public class miniGame : MonoBehaviour
             {
                 fishMovement = goodZoneCollider.GetComponent<movement>();
             }
+
+            
 
             int caughtIndex = 0; // Default to Bream
             if (fishMovement != null)
